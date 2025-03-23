@@ -2,7 +2,7 @@
 
 My name is Brian - most people call me BMad!
 
-Check out my YouTube channel [YT BMad Photo](https://www.youtube.com/@BMadPhoto) where I will be sharing thoughts and ideas on software engineering, the industry, and a focus lately on AI tooling and its impacts on industry. 
+Check out my YouTube channel [BMad Code](https://www.youtube.com/@BMadCode) where I will be sharing thoughts and ideas on software engineering, the industry, and a focus lately on AI tooling and its impacts on industry. 
 
 ### About me
 
