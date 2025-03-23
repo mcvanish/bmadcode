@@ -2,6 +2,8 @@
 
 My name is Brian - most people call me BMad!
 
+Check out my YouTube channel [YT BMad Photo](https://www.youtube.com/@BMadPhoto) where I will be sharing thoughts and ideas on software engineering, the industry, and a focus lately on AI tooling and its impacts on industry. 
+
 ### About me
 
 I have been a software engineer and engineering leader with a career spanning more than 20 years working in both the private and public sectors along with service in the US Army - working with many organizations spanning from well established large enterprises to new start ups.
@@ -22,7 +24,3 @@ I am interested in collaborating on AI Agents and tooling, and learning the best
 
 I love Photography - mostly street and macro - and share what I learn or experience on another youtube channel [YT BMad Photo](https://www.youtube.com/@BMadPhoto) - check it out if you are interesting or want to learn more about photography beyond using a smartphone!
 
-### Contact Me
-
-LinkedIn: https://www.linkedin.com/in/briantmadison/
-YouTube: https://www.youtube.com/@BMadPhoto
