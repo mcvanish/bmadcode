@@ -8,6 +8,8 @@ Check out my YouTube channel [BMad Code](https://www.youtube.com/@BMadCode) wher
 
 I have been a software engineer and engineering leader with a career spanning more than 20 years working in both the private and public sectors along with service in the US Army - working with many organizations spanning from well established large enterprises to new start ups.
 
+For Questions, Comments, Media Inquiries, Speaking Engagements or Interviews - you can contact me at bmadcode+github-contact@gmail.com.
+
 ### Engineering Interests
 
 Outside of my day job, I am excited to be exploring the frontiers of AI and its impact on software development, a fast changing landscape impacting every aspect of industry.
