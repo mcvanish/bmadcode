@@ -22,5 +22,4 @@ I am interested in collaborating on AI Agents and tooling, and learning the best
 
 ### Other Interests
 
-I love Photography - mostly street and macro - and share what I learn or experience on another youtube channel [YT BMad Photo](https://www.youtube.com/@BMadPhoto) - check it out if you are interesting or want to learn more about photography beyond using a smartphone!
-
+I love Photography - mostly street and macro - and share what I learn or experience on my other YouTube channel [BMad Photo](https://www.youtube.com/@BMadPhoto) - check it out if you are interesting or want to learn more about photography beyond using a smartphone!
