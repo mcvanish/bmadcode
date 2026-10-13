@@ -1,6 +1,6 @@
-# Safe Haven audio cleaner
+# CleanTranscriber
 
-Haalt achtergrondgeluid uit audio-opnames zodat alleen stemmen overblijven. Bedoeld als stap vóór transcriptie.
+Haalt achtergrondgeluid uit audio-opnames zodat alleen stemmen overblijven. Onderdeel van Safe Haven. Bedoeld als stap vóór transcriptie.
 
 Alles draait lokaal. Er gaat geen audio naar een externe dienst, wat bij aangiftemateriaal een harde eis is.
 
@@ -8,14 +8,14 @@ Alles draait lokaal. Er gaat geen audio naar een externe dienst, wat bij aangift
 
 ```bash
 pip install -r requirements.txt      # plus ffmpeg op het systeem
-python safehaven_audio_clean.py opname.m4a            # -> opname.schoon.wav + opname.schoon.wav.json
-python safehaven_audio_clean.py map_met_opnames/ -o schoon/   # hele map
+python cleantranscriber.py opname.m4a            # -> opname.schoon.wav + opname.schoon.wav.json
+python cleantranscriber.py map_met_opnames/ -o schoon/   # hele map
 ```
 
 Vanuit code (bv. in de Safe Haven backend):
 
 ```python
-from safehaven_audio_clean import clean_audio, Options
+from cleantranscriber import clean_audio, Options
 report = clean_audio("in.m4a", "uit.wav", Options())
 print(report.speech_ratio, report.segments)
 ```
