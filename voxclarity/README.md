@@ -52,6 +52,30 @@ Het origineel wordt nooit aangepast en de tool weigert het te overschrijven. Naa
 - Zeer zachte spraak kan wegvallen. Controleer bij belangrijk materiaal altijd luisterend of het resultaat niets weglaat, en kijk in het rapport naar `speech_ratio`.
 - Getest op synthetische spraak met ruis. Test dit op een set echte, geanonimiseerde opnames voordat je het in productie neemt.
 
+## Evalueren op echte opnames
+
+Beantwoordt de vraag die telt: helpt VoxClarity, en vallen er geen woorden weg? Draait Whisper lokaal (faster-whisper), er gaat niets naar buiten.
+
+```bash
+pip install -r requirements-eval.txt
+python evaluate.py opnames/ --refs referenties/ --out resultaat/
+```
+
+- `opnames/`: 10 tot 20 geanonimiseerde opnames, een mix van rustig, rumoerig, fluisterend en met tv/muziek.
+- `referenties/` (optioneel, maar sterk aangeraden): per opname een handmatige transcriptie `<zelfde naam>.txt`, voor minstens 5 opnames. Zonder referentie wordt alleen origineel met schoon vergeleken.
+- Model: standaard `large-v3` (beste, traag op CPU). Snel proberen: `--model small --compute-type int8`. Taal: `--language nl` (standaard) of `auto`.
+- Instellingen testen: `--threshold 0.35`, `--passes 2`, `--extra-denoise`, `--pad-ms 300`. Draai meerdere varianten en vergelijk de rapporten.
+
+Uitvoer in `resultaat/`: `report.md` (samenvatting, tabel per opname, weggevallen passages met tijdstip), `results.csv` en `details/<naam>.json`. De schone audio staat in `resultaat/schoon/`.
+
+Zo lees je het resultaat:
+1. Kijk eerst naar opnames die **slechter** werden (positieve Δ). Dat is waar VoxClarity schade doet.
+2. Luister bij elke weggevallen passage naar het origineel op dat tijdstip. Echte spraak? Dan dempt VoxClarity te hard.
+3. Een lagere WER na opschonen komt soms doordat Whisper op ruis woorden verzint. Dat is winst, maar controleer het.
+4. Besluit pas na de uitschieters, niet op het gemiddelde alleen.
+
+Privacy: rapport, details en schone audio bevatten aangiftemateriaal. Sla ze op dezelfde beveiligde plek op als de opnames. `--redact` houdt tekst uit `report.md`, maar `details/*.json` bevat de transcripties wel.
+
 ## Tests
 
 ```bash
