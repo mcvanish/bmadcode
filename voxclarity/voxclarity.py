@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CleanTranscriber.
+"""VoxClarity.
 
 Maakt van een opname met achtergrondgeluid een bestand waarin alleen stemmen
 overblijven, bedoeld als invoer voor transcriptie.
@@ -331,7 +331,7 @@ def collect_inputs(p: Path) -> list[Path]:
 
 
 def main(argv: list[str] | None = None) -> int:
-    ap = argparse.ArgumentParser(prog="cleantranscriber", description="Verwijder achtergrondgeluid en laat alleen stemmen over, voor transcriptie.")
+    ap = argparse.ArgumentParser(prog="voxclarity", description="Verwijder achtergrondgeluid en laat alleen stemmen over, voor transcriptie.")
     ap.add_argument("input", type=Path, help="audiobestand of map met audiobestanden")
     ap.add_argument("-o", "--output", type=Path, help="uitvoerbestand (.wav) of map. Standaard: <naam>.schoon.wav naast het origineel")
     d = Options()

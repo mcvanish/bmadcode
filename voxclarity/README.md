@@ -1,4 +1,4 @@
-# CleanTranscriber
+# VoxClarity
 
 Haalt achtergrondgeluid uit audio-opnames zodat alleen stemmen overblijven. Onderdeel van Safe Haven. Bedoeld als stap vóór transcriptie.
 
@@ -8,14 +8,14 @@ Alles draait lokaal. Er gaat geen audio naar een externe dienst, wat bij aangift
 
 ```bash
 pip install -r requirements.txt      # plus ffmpeg op het systeem
-python cleantranscriber.py opname.m4a            # -> opname.schoon.wav + opname.schoon.wav.json
-python cleantranscriber.py map_met_opnames/ -o schoon/   # hele map
+python voxclarity.py opname.m4a            # -> opname.schoon.wav + opname.schoon.wav.json
+python voxclarity.py map_met_opnames/ -o schoon/   # hele map
 ```
 
 Vanuit code (bv. in de Safe Haven backend):
 
 ```python
-from cleantranscriber import clean_audio, Options
+from voxclarity import clean_audio, Options
 report = clean_audio("in.m4a", "uit.wav", Options())
 print(report.speech_ratio, report.segments)
 ```

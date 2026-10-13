@@ -9,7 +9,7 @@ import numpy as np
 import soundfile as sf
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-import cleantranscriber as sh  # noqa: E402
+import voxclarity as sh  # noqa: E402
 
 
 def noise_file(path, seconds=6, sr=16000):
