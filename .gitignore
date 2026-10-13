@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+*.schoon.wav
+*.schoon.wav.json

@@ -1,0 +1,7 @@
+numpy>=1.26
+scipy>=1.11
+soundfile>=0.12
+noisereduce>=3.0
+onnxruntime>=1.17
+pyrnnoise>=0.4.5
+# Systeemvereiste: ffmpeg (decoderen van mp3/m4a/opus/amr/video enz.)

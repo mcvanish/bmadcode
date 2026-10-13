@@ -1,0 +1,59 @@
+# Safe Haven audio cleaner
+
+Haalt achtergrondgeluid uit audio-opnames zodat alleen stemmen overblijven. Bedoeld als stap vóór transcriptie.
+
+Alles draait lokaal. Er gaat geen audio naar een externe dienst, wat bij aangiftemateriaal een harde eis is.
+
+## Gebruik
+
+```bash
+pip install -r requirements.txt      # plus ffmpeg op het systeem
+python safehaven_audio_clean.py opname.m4a            # -> opname.schoon.wav + opname.schoon.wav.json
+python safehaven_audio_clean.py map_met_opnames/ -o schoon/   # hele map
+```
+
+Vanuit code (bv. in de Safe Haven backend):
+
+```python
+from safehaven_audio_clean import clean_audio, Options
+report = clean_audio("in.m4a", "uit.wav", Options())
+print(report.speech_ratio, report.segments)
+```
+
+Invoer: alles wat ffmpeg leest (wav, mp3, m4a, opus, amr, mp4/mov enz.). Uitvoer: WAV, 16 kHz mono, de standaard voor transcriptiemodellen.
+
+## Wat het doet
+
+1. **RNNoise** (neuraal netwerk) haalt ruis weg, ook onder de spraak.
+2. **Silero VAD** bepaalt per 32 ms of er een stem klinkt. Al het andere (deurslag, muziek, verkeer, stilte) wordt volledig gedempt.
+3. Loudness-normalisatie op de stemfragmenten.
+
+De tijdlijn blijft intact. Niet-stem wordt gedempt, niet weggeknipt, dus tijdstempels uit de transcriptie kloppen met het origineel. Wil je wel knippen: `--trim-silence` (de segmenten in het rapport laten zien hoe de tijd verschuift).
+
+## Bewijsketen
+
+Het origineel wordt nooit aangepast en de tool weigert het te overschrijven. Naast elke uitvoer staat een `.json`-rapport met SHA-256 van invoer en uitvoer, tijdstip, alle instellingen en de gedetecteerde stemsegmenten. Bewaar het rapport bij het dossier en transcribeer, waar mogelijk, ook het origineel ter controle.
+
+## Afstellen
+
+| Situatie | Optie |
+|---|---|
+| Zachte of fluisterende stem valt weg | `--threshold 0.35` |
+| Muziek/tv wordt als stem meegenomen | `--threshold 0.65` |
+| Zeer rumoerige opname | `--passes 2 --extra-denoise` |
+| Woordbegin of -einde wordt afgekapt | `--pad-ms 300` |
+| Liever geen harde digitale stilte | `--keep-noise-db -55` |
+
+## Beperkingen (lees dit voor je het op echt materiaal inzet)
+
+- **Stemmen op de achtergrond** (tv, radio, mensen in de verte) zijn voor de tool ook stemmen en blijven staan. Stemmen scheiden naar spreker is een ander probleem (diarization/bronscheiding) en zit hier niet in.
+- **Geluid dat tegelijk met spraak klinkt** wordt door RNNoise verminderd, niet perfect verwijderd. Zware overlap geeft restanten of lichte vervorming.
+- Zang en sommige muziek worden door de VAD soms als spraak gezien.
+- Zeer zachte spraak kan wegvallen. Controleer bij belangrijk materiaal altijd luisterend of het resultaat niets weglaat, en kijk in het rapport naar `speech_ratio`.
+- Getest op synthetische spraak met ruis. Test dit op een set echte, geanonimiseerde opnames voordat je het in productie neemt.
+
+## Tests
+
+```bash
+python -m unittest discover -s tests
+```
